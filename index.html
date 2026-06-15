@@ -1,90 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weather Dashboard</title>
-<link rel="stylesheet" href="style.css">
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
 
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
 <body>
 
-<div class="container">
+    <div class="background-glow"></div>
 
-    <div class="top-bar">
+    <div class="weather-container">
 
-        <button id="locationBtn">
-            📍 Current Location
-        </button>
+        <div class="top-bar">
+            <h2>HAVACHI</h2>
 
-        <button id="themeBtn">
-            🌙
-        </button>
+            <div class="search-box">
+                <input type="text" id="cityInput" placeholder="Search city...">
+                <button onclick="getWeather()">🔍</button>
+            </div>
+        </div>
 
-    </div>
+        <div class="weather-card">
 
-    <div class="search-box">
+            <div class="weather-info">
 
-        <input
-            type="text"
-            id="cityInput"
-            placeholder="Search city">
+                <div class="location">
+                    <h1 id="city">Chennai</h1>
+                    <p id="country">India</p>
+                </div>
 
-        <button id="searchBtn">
-            Search
-        </button>
+                <div class="temp-section">
+                    <h1 id="temperature">30°</h1>
+                    <p id="condition">Sunny</p>
+                </div>
 
-    </div>
+                <div class="icon-box">
+                    <img id="weatherIcon" src="" alt="">
+                </div>
 
-    <div id="loader" class="loader hidden"></div>
-
-    <div class="weather-card">
-
-        <h2 id="cityName">
-            Search a city
-        </h2>
-
-        <p id="dateTime"></p>
-
-        <img id="weatherIcon">
-
-        <h1 id="temperature">
-            --
-        </h1>
-
-        <p id="description">
-            Weather Condition
-        </p>
-
-        <div class="details">
-
-            <div class="detail-card">
-                <h4>Humidity</h4>
-                <p id="humidity">--</p>
             </div>
 
-            <div class="detail-card">
-                <h4>Wind</h4>
-                <p id="wind">--</p>
+            <div class="weather-details">
+
+                <div class="detail-card">
+                    <span>💧 Humidity</span>
+                    <h3 id="humidity">--%</h3>
+                </div>
+
+                <div class="detail-card">
+                    <span>🌬 Wind</span>
+                    <h3 id="wind">-- km/h</h3>
+                </div>
+
+                <div class="detail-card">
+                    <span>🌡 Feels Like</span>
+                    <h3 id="feelsLike">--°C</h3>
+                </div>
+
             </div>
 
         </div>
 
     </div>
 
-    <h3>3 Day Forecast</h3>
-
-    <div id="forecastContainer"
-         class="forecast-container">
-    </div>
-
-    <h3>Recent Searches</h3>
-
-    <ul id="historyList"></ul>
-
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
