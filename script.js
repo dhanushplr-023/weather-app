@@ -1,4 +1,4 @@
-const apiKey = "01ee0b1f3ba540508fb163716261506";
+const apiKey = "8975e06709954cbdae4165044261506";
 
 const cityInput =
 document.getElementById("cityInput");
@@ -21,71 +21,283 @@ document.getElementById("humidity");
 const wind =
 document.getElementById("wind");
 
+const weatherIcon =
+document.getElementById("weatherIcon");
+
+const loader =
+document.getElementById("loader");
+
+const forecastContainer =
+document.getElementById("forecastContainer");
+
+const historyList =
+document.getElementById("historyList");
+
+const dateTime =
+document.getElementById("dateTime");
+
 async function getWeather(city){
 
-    try{
+loader.classList.remove("hidden");
 
-        const url =
-        `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=Chennai`;
-        const response =
-        await fetch(url);
+try{
 
-        const data =
-        await response.json();
+const url =
+`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3`;
 
-        if(data.cod !== 200){
+const response =
+await fetch(url);
 
-            cityName.textContent =
-            "City Not Found";
+const data =
+await response.json();
 
-            return;
-        }
+if(data.error){
 
-        cityName.textContent =
-        data.name;
-
-        temperature.textContent =
-        `${Math.round(data.main.temp)}°C`;
-
-        description.textContent =
-        data.weather[0].description;
-
-        humidity.textContent =
-        `Humidity: ${data.main.humidity}%`;
-
-        wind.textContent =
-        `Wind: ${data.wind.speed} m/s`;
-
-    }
-    catch(error){
-
-        cityName.textContent =
-        "Something Went Wrong";
-    }
+alert("City not found");
+loader.classList.add("hidden");
+return;
 }
 
-searchBtn.addEventListener("click", ()=>{
+displayWeather(data);
 
-     console.log("Button clicked");
-    const city =
-    cityInput.value.trim();
+saveHistory(city);
 
-    if(city){
+}
+catch(error){
 
-        getWeather(city);
-    }
+console.log(error);
+
+}
+finally{
+
+loader.classList.add("hidden");
+
+}
+
+}
+
+function displayWeather(data){
+
+cityName.textContent =
+data.location.name;
+
+temperature.textContent =
+`${data.current.temp_c}°C`;
+
+description.textContent =
+data.current.condition.text;
+
+humidity.textContent =
+`${data.current.humidity}%`;
+
+wind.textContent =
+`${data.current.wind_kph} km/h`;
+
+weatherIcon.src =
+"https:" +
+data.current.condition.icon;
+
+dateTime.textContent =
+new Date().toLocaleString();
+
+setBackground(
+data.current.condition.text
+);
+
+showForecast(data);
+
+}
+
+function setBackground(condition){
+
+document.body.className="";
+
+condition =
+condition.toLowerCase();
+
+if(condition.includes("sun")){
+
+document.body.classList.add(
+"sunny"
+);
+
+}
+
+else if(condition.includes("rain")){
+
+document.body.classList.add(
+"rainy"
+);
+
+}
+
+else{
+
+document.body.classList.add(
+"cloudy"
+);
+
+}
+
+}
+
+function showForecast(data){
+
+forecastContainer.innerHTML="";
+
+data.forecast.forecastday.forEach(day=>{
+
+const card =
+document.createElement("div");
+
+card.className =
+"forecast-card";
+
+card.innerHTML=`
+<h4>
+${day.date}
+</h4>
+
+<img src="https:${day.day.condition.icon}">
+
+<p>
+${day.day.avgtemp_c}°C
+</p>
+`;
+
+forecastContainer.appendChild(card);
 
 });
+
+}
+
+function saveHistory(city){
+
+let history =
+JSON.parse(
+localStorage.getItem(
+"history"
+)
+) || [];
+
+if(!history.includes(city)){
+
+history.unshift(city);
+
+}
+
+history =
+history.slice(0,5);
+
+localStorage.setItem(
+"history",
+JSON.stringify(history)
+);
+
+loadHistory();
+
+}
+
+function loadHistory(){
+
+historyList.innerHTML="";
+
+const history =
+JSON.parse(
+localStorage.getItem(
+"history"
+)
+) || [];
+
+history.forEach(city=>{
+
+const li =
+document.createElement("li");
+
+li.textContent =
+city;
+
+li.onclick=()=>{
+
+getWeather(city);
+
+};
+
+historyList.appendChild(li);
+
+});
+
+}
+
+searchBtn.addEventListener(
+"click",
+()=>{
+
+if(cityInput.value){
+
+getWeather(
+cityInput.value
+);
+
+}
+
+}
+);
 
 cityInput.addEventListener(
-"keypress",
+"keydown",
 (e)=>{
 
-    if(e.key === "Enter"){
+if(e.key==="Enter"){
 
-        getWeather(
-            cityInput.value
-        );
-    }
+getWeather(
+cityInput.value
+);
 
-});
+}
+
+}
+);
+
+document
+.getElementById("themeBtn")
+.addEventListener(
+"click",
+()=>{
+
+document.body.classList.toggle(
+"dark"
+);
+
+}
+);
+
+document
+.getElementById(
+"locationBtn"
+)
+.addEventListener(
+"click",
+()=>{
+
+navigator.geolocation
+.getCurrentPosition(
+position=>{
+
+const lat =
+position.coords.latitude;
+
+const lon =
+position.coords.longitude;
+
+getWeather(
+`${lat},${lon}`
+);
+
+}
+);
+
+}
+);
+
+loadHistory();

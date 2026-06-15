@@ -1,67 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
-
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather Dashboard</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <div class="weather-card">
+    <div class="top-bar">
 
-            <div class="search-box">
+        <button id="locationBtn">
+            📍 Current Location
+        </button>
 
-                <input
-                    type="text"
-                    id="cityInput"
-                    placeholder="Enter city name">
+        <button id="themeBtn">
+            🌙
+        </button>
 
-                <button id="searchBtn">
-                    Search
-                </button>
+    </div>
 
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="cityInput"
+            placeholder="Search city">
+
+        <button id="searchBtn">
+            Search
+        </button>
+
+    </div>
+
+    <div id="loader" class="loader hidden"></div>
+
+    <div class="weather-card">
+
+        <h2 id="cityName">
+            Search a city
+        </h2>
+
+        <p id="dateTime"></p>
+
+        <img id="weatherIcon">
+
+        <h1 id="temperature">
+            --
+        </h1>
+
+        <p id="description">
+            Weather Condition
+        </p>
+
+        <div class="details">
+
+            <div class="detail-card">
+                <h4>Humidity</h4>
+                <p id="humidity">--</p>
             </div>
 
-            <div class="weather-info">
-
-                <h2 id="cityName">
-                    Search a City
-                </h2>
-
-                <h1 id="temperature">
-                    --
-                </h1>
-
-                <p id="description">
-                    Weather Condition
-                </p>
-
-                <div class="details">
-
-                    <p id="humidity">
-                        Humidity: --
-                    </p>
-
-                    <p id="wind">
-                        Wind: --
-                    </p>
-
-                </div>
-
+            <div class="detail-card">
+                <h4>Wind</h4>
+                <p id="wind">--</p>
             </div>
 
         </div>
 
     </div>
 
-    <script src="script.js"></script>
+    <h3>3 Day Forecast</h3>
+
+    <div id="forecastContainer"
+         class="forecast-container">
+    </div>
+
+    <h3>Recent Searches</h3>
+
+    <ul id="historyList"></ul>
+
+</div>
+
+<script src="script.js"></script>
 
 </body>
-
 </html>
