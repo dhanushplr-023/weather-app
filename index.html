@@ -3,146 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glass Weather Dashboard</title>
+    <title>Weather Dashboard</title>
+
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Background layers -->
-    <div class="bg-image" id="bgImage"></div>
-    <div class="bg-overlay"></div>
 
-    <main class="dashboard">
-        
-        <!-- ========== LEFT PANEL ========== -->
-        <section class="left-panel">
-            
-            <!-- 
-              SEARCH BAR + LOCATION BUTTON
-              New: Added search input and GPS button
-            -->
-            <div class="search-container">
-                <div class="search-box">
-                    <!-- Input field for city names -->
-                    <input 
-                        type="text" 
-                        class="search-input" 
-                        id="searchInput" 
-                        placeholder="Search city..." 
-                        autocomplete="off"
-                    >
-                    <!-- Search button (magnifying glass) -->
-                    <button class="search-btn" id="searchBtn" title="Search">
-                        🔍
-                    </button>
-                    <!-- GPS button (gets your real location) -->
-                    <button class="location-btn" id="locationBtn" title="Use my location">
-                        📍
-                    </button>
-                </div>
-                <!-- Dropdown for search suggestions -->
-                <div class="search-dropdown" id="searchDropdown"></div>
-            </div>
+    <div class="container">
 
-            <!-- City display -->
-            <div class="location" id="location">--</div>
-            
-            <!-- Main temperature -->
-            <div class="main-temp">
-                <span class="temp-number" id="tempNumber">--</span>
-                <span class="temp-unit">°</span>
-            </div>
-            
-            <div class="condition" id="condition">--</div>
-            
-            <p class="description" id="description">
-                Search for a city or click the GPS button to use your location
+        <header>
+            <h1>Weather Dashboard</h1>
+        </header>
+
+        <div class="search-section">
+            <input
+                type="text"
+                id="cityInput"
+                placeholder="Enter city name..."
+            >
+
+            <button id="searchBtn">
+                Search
+            </button>
+        </div>
+
+        <div class="weather-card">
+
+            <h2 id="cityName">
+                City Name
+            </h2>
+
+            <h3 id="temperature">
+                23°C
+            </h3>
+
+            <p id="condition">
+                Clear Sky
             </p>
-            
-            <!-- Details grid -->
-            <div class="details-grid">
-                <div class="glass-card">
-                    <div class="card-label">FEELS LIKE</div>
-                    <div class="card-icon">🌡️</div>
-                    <div class="card-value" id="feelsLike">--</div>
-                </div>
-                <div class="glass-card">
-                    <div class="card-label">PRECIPITATION</div>
-                    <div class="card-icon">💧</div>
-                    <div class="card-value" id="precipitation">--</div>
-                    <div class="card-subtext" id="precipSubtext">in last 24h</div>
-                </div>
-                <div class="glass-card">
-                    <div class="card-label">VISIBILITY</div>
-                    <div class="card-icon">👁️</div>
-                    <div class="card-value" id="visibility">--</div>
-                </div>
-                <div class="glass-card">
-                    <div class="card-label">HUMIDITY</div>
-                    <div class="card-icon">💨</div>
-                    <div class="card-value" id="humidity">--</div>
-                    <div class="card-subtext" id="humiditySubtext">--</div>
-                </div>
-            </div>
-        </section>
 
-        <!-- ========== RIGHT PANEL ========== -->
-        <section class="right-panel">
-            
-            <!-- Hourly forecast -->
-            <div class="forecast-section">
-                <h3 class="section-title">HOURLY FORECAST</h3>
-                <div class="hourly-scroll" id="hourlyContainer">
-                    <!-- JS fills this -->
-                </div>
-            </div>
-            
-            <!-- 10-day forecast -->
-            <div class="forecast-section">
-                <h3 class="section-title">10-DAY FORECAST</h3>
-                <div class="daily-list" id="dailyContainer">
-                    <!-- JS fills this -->
-                </div>
-            </div>
-            
-            <!-- Bottom row: UV + Wind -->
-            <div class="bottom-row">
-                <div class="glass-card uv-card">
-                    <div class="card-label">UV INDEX</div>
-                    <div class="uv-number" id="uvNumber">--</div>
-                    <div class="uv-text" id="uvText">--</div>
-                    <div class="uv-bar">
-                        <div class="uv-gradient"></div>
-                        <div class="uv-marker" id="uvMarker"></div>
-                    </div>
-                    <div class="uv-advice" id="uvAdvice">--</div>
-                </div>
-                
-                <div class="glass-card wind-card">
-                    <div class="card-label">WIND</div>
-                    <div class="wind-speed" id="windSpeed">--</div>
-                    <div class="wind-gusts">Gusts: <span id="windGusts">--</span> km/h</div>
-                    <div class="compass">
-                        <div class="compass-face">
-                            <span class="compass-n">N</span>
-                            <span class="compass-e">E</span>
-                            <span class="compass-s">S</span>
-                            <span class="compass-w">W</span>
-                            <div class="compass-arrow" id="compassArrow"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </section>
-    </main>
+            <p id="humidity">
+                Humidity: 70%
+            </p>
 
-    <!-- Loading spinner overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="spinner"></div>
-        <p>Getting weather data...</p>
+            <p id="windSpeed">
+                Wind: 10 km/h
+            </p>
+
+        </div>
+
     </div>
 
     <script src="script.js"></script>
+
 </body>
 </html>
