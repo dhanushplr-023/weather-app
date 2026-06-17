@@ -6,54 +6,104 @@
     <title>Weather Dashboard</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <header>
-            <h1>Weather Dashboard</h1>
-        </header>
+    <header>
+        <h1>Weather Dashboard</h1>
 
         <div class="search-section">
             <input
                 type="text"
                 id="cityInput"
-                placeholder="Enter city name..."
+                placeholder="Search city..."
             >
-
             <button id="searchBtn">
                 Search
             </button>
         </div>
+    </header>
 
-        <div class="weather-card">
+    <div class="top-section">
+
+        <div class="today-weather card">
+
+            <h3>Today</h3>
+
+            <h1 id="temperature">
+                23°C
+            </h1>
 
             <h2 id="cityName">
-                City Name
+                Chennai
             </h2>
 
-            <h3 id="temperature">
-                23°C
-            </h3>
-
             <p id="condition">
-                Clear Sky
+                Partly Cloudy
             </p>
 
-            <p id="humidity">
-                Humidity: 70%
-            </p>
+        </div>
 
-            <p id="windSpeed">
-                Wind: 10 km/h
-            </p>
+        <div class="rain-card card">
+
+            <h3>Chance of Rain</h3>
+
+            <div class="rain-bars">
+
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+
+            </div>
 
         </div>
 
     </div>
 
-    <script src="script.js"></script>
+    <div class="forecast-section">
+
+        <div class="forecast-card">Mon<br>☀️<br>23°C</div>
+        <div class="forecast-card">Tue<br>🌤️<br>24°C</div>
+        <div class="forecast-card">Wed<br>☁️<br>22°C</div>
+        <div class="forecast-card">Thu<br>🌦️<br>21°C</div>
+        <div class="forecast-card">Fri<br>☀️<br>25°C</div>
+
+    </div>
+
+    <div class="bottom-section">
+
+        <div class="chart-card card">
+
+            <h3>Temperature Trend</h3>
+
+            <canvas id="tempChart"></canvas>
+
+        </div>
+
+        <div class="cities-card card">
+
+            <h3>Nearby Cities</h3>
+
+            <ul>
+                <li>Mumbai</li>
+                <li>Delhi</li>
+                <li>Bangalore</li>
+                <li>Hyderabad</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
