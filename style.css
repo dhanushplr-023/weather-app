@@ -138,3 +138,34 @@ header{
         flex-wrap:wrap;
     }
 }
+body.sunny{
+    background: linear-gradient(135deg,#f9d423,#ff4e50);
+}
+
+body.cloudy{
+    background: linear-gradient(135deg,#485563,#29323c);
+}
+
+body.rainy{
+    background: linear-gradient(135deg,#314755,#26a0da);
+}
+
+body.storm{
+    background: linear-gradient(135deg,#141e30,#243b55);
+}
+
+body.mist{
+    background: linear-gradient(135deg,#757f9a,#d7dde8);
+}
+
+body.morning{
+    background: linear-gradient(135deg,#ff9966,#ff5e62);
+}
+
+body.evening{
+    background: linear-gradient(135deg,#614385,#516395);
+}
+
+body.night{
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+}
