@@ -96,6 +96,11 @@
             <button id="searchBtn">
                 🔍
             </button>
+            <button id="locationBtn">
+
+            📍 My Location
+
+            </button>
 
         </div>
 
@@ -137,25 +142,32 @@
     <div class="weather-left">
 
         <img
-            src="https://openweathermap.org/img/wn/02d@2x.png"
-            alt="Weather Icon"
-            class="weather-icon">
+           id="weatherIcon"
+           src=""            
+           alt="Weather Icon"
+           class="weather-icon">
 
-        <h1 class="temperature">
+        <h1
+            id="temperature"
+            class="temperature">
 
-            1°C
+             --°C
 
         </h1>
 
-        <h2 class="city">
+        <h2
+            id="cityName"
+            class="city">
 
-            New York, US
+            City Name
 
         </h2>
 
-        <p class="feels">
+        <p
+            id="feelsLike"
+            class="feels">
 
-            Real Feel: -1°C
+             Feels Like: --°C
 
         </p>
 
@@ -163,9 +175,17 @@
 
         <div class="date-time">
 
-            <p>📅 16 January 2023</p>
+            <p id="currentDate">
 
-            <p>🕒 14:32:20</p>
+            📅 Date
+
+            </p>
+
+            <p id="currentTime">
+
+            🕒 Time
+
+            </p>
 
         </div>
 
@@ -221,9 +241,17 @@
 
         <div class="weather-stats">
 
-            <span>💧 54%</span>
+            <span id="humidity">
 
-            <span>🌬️ 12 km/h</span>
+            💧 --%
+
+            </span>
+
+            <span id="wind">
+
+            🌬️ -- km/h
+
+            </span>
 
         </div>
 
@@ -441,6 +469,7 @@
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="storage.js"></script>
 <script src="api.js"></script>
 <script src="ui.js"></script>

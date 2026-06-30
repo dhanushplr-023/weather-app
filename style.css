@@ -621,3 +621,29 @@ body{
     height:300px;
 
 }
+
+#locationBtn{
+
+    background:#6c63ff;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 20px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    margin-left:10px;
+
+    transition:.3s;
+
+}
+
+#locationBtn:hover{
+
+    background:#5a52e0;
+
+}

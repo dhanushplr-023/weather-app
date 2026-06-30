@@ -70,7 +70,7 @@ if (chartCanvas) {
             responsive: true,
 
             maintainAspectRatio: false,
-            
+
             aspectRatio: 2,
 
             plugins: {
@@ -116,3 +116,75 @@ if (chartCanvas) {
     });
 
 }
+
+// ==============================
+// Search Weather
+// ==============================
+
+const searchButton = document.getElementById("searchBtn");
+
+const cityInput = document.getElementById("cityInput");
+
+searchButton.addEventListener("click", async () => {
+
+    const city = cityInput.value.trim();
+
+    if (city === "") {
+
+        alert("Please enter a city.");
+
+        return;
+
+    }
+
+const weather = await getWeather(city);
+
+if(weather){
+
+    console.log(weather);
+
+    updateWeatherUI(weather);
+
+}
+
+});
+
+// =========================
+// Current Location Button
+// =========================
+
+const locationBtn = document.getElementById("locationBtn");
+
+locationBtn.addEventListener("click", () => {
+
+    if(!navigator.geolocation){
+
+        alert("Geolocation is not supported.");
+
+        return;
+
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+        async(position)=>{
+
+            const lat = position.coords.latitude;
+
+            const lon = position.coords.longitude;
+
+            const weather = await getWeatherByCoords(lat, lon);
+
+            updateWeatherUI(weather);
+
+        },
+
+        ()=>{
+
+            alert("Location permission denied.");
+
+        }
+
+    );
+
+});
