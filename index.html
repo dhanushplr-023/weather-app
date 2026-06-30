@@ -82,6 +82,362 @@
         </nav>
 
     </aside>
+<main class="main-content">
+
+    <header class="header">
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="cityInput"
+                placeholder="Search location, city or place">
+
+            <button id="searchBtn">
+                🔍
+            </button>
+
+        </div>
+
+        <div class="header-right">
+
+            <div class="tabs">
+
+                <span>Daily</span>
+
+                <span class="active-tab">
+                    Weekly
+                </span>
+
+                <span>Monthly</span>
+
+            </div>
+
+            <button class="icon-btn">
+                🌙
+            </button>
+
+            <button class="icon-btn">
+                🔔
+            </button>
+
+            <div class="profile">
+
+                👤
+
+            </div>
+
+        </div>
+
+    </header>
+<section class="weather-card">
+
+    <!-- Left Side -->
+
+    <div class="weather-left">
+
+        <img
+            src="https://openweathermap.org/img/wn/02d@2x.png"
+            alt="Weather Icon"
+            class="weather-icon">
+
+        <h1 class="temperature">
+
+            1°C
+
+        </h1>
+
+        <h2 class="city">
+
+            New York, US
+
+        </h2>
+
+        <p class="feels">
+
+            Real Feel: -1°C
+
+        </p>
+
+        <hr>
+
+        <div class="date-time">
+
+            <p>📅 16 January 2023</p>
+
+            <p>🕒 14:32:20</p>
+
+        </div>
+
+    </div>
+
+    <!-- Right Side -->
+
+    <div class="weather-right">
+
+        <h2>
+
+            Temperature
+
+        </h2>
+
+        <canvas id="tempChart"></canvas>
+
+        <div class="temp-info">
+
+            <div>
+
+                <strong>Morning</strong>
+
+                <p>1°C</p>
+
+            </div>
+
+            <div>
+
+                <strong>Afternoon</strong>
+
+                <p>2°C</p>
+
+            </div>
+
+            <div>
+
+                <strong>Evening</strong>
+
+                <p>0°C</p>
+
+            </div>
+
+            <div>
+
+                <strong>Night</strong>
+
+                <p>-1°C</p>
+
+            </div>
+
+        </div>
+
+        <div class="weather-stats">
+
+            <span>💧 54%</span>
+
+            <span>🌬️ 12 km/h</span>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ==========================
+     WEATHER DETAILS
+========================== -->
+
+<section class="weather-details">
+
+    <div class="info-card">
+
+        <h3>🌬 Wind</h3>
+
+        <h1 id="windSpeed">
+
+            12 km/h
+
+        </h1>
+
+        <p>
+
+            Gentle Breeze
+
+        </p>
+
+    </div>
+
+    <div class="info-card">
+
+        <h3>🌧 Chance of Rain</h3>
+
+        <h1 id="rainChance">
+
+            54%
+
+        </h1>
+
+        <p>
+
+            Moderate
+
+        </p>
+
+    </div>
+
+    <div class="info-card">
+
+        <h3>☀ UV Index</h3>
+
+        <h1 id="uvIndex">
+
+            5
+
+        </h1>
+
+        <p>
+
+            Moderate
+
+        </p>
+
+    </div>
+
+    <div class="info-card">
+
+        <h3>☁ Cloud Cover</h3>
+
+        <h1 id="cloudCover">
+
+            68%
+
+        </h1>
+
+        <p>
+
+            Mostly Cloudy
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+     5 DAY FORECAST
+========================== -->
+
+<section class="forecast-section">
+
+    <h2 class="section-title">
+
+        5-Day Forecast
+
+    </h2>
+
+    <div class="forecast-container">
+
+        <div class="forecast-card">
+
+            <h3>Mon</h3>
+
+            <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Sunny">
+
+            <h2>32°C</h2>
+
+            <p>Sunny</p>
+
+        </div>
+
+        <div class="forecast-card">
+
+            <h3>Tue</h3>
+
+            <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="Rain">
+
+            <h2>29°C</h2>
+
+            <p>Rain</p>
+
+        </div>
+
+        <div class="forecast-card">
+
+            <h3>Wed</h3>
+
+            <img src="https://openweathermap.org/img/wn/03d@2x.png" alt="Cloudy">
+
+            <h2>27°C</h2>
+
+            <p>Cloudy</p>
+
+        </div>
+
+        <div class="forecast-card">
+
+            <h3>Thu</h3>
+
+            <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="Partly Cloudy">
+
+            <h2>30°C</h2>
+
+            <p>Partly Cloudy</p>
+
+        </div>
+
+        <div class="forecast-card">
+
+            <h3>Fri</h3>
+
+            <img src="https://openweathermap.org/img/wn/11d@2x.png" alt="Storm">
+
+            <h2>26°C</h2>
+
+            <p>Storm</p>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ==========================
+     BOTTOM DASHBOARD
+========================== -->
+
+<section class="bottom-dashboard">
+
+    <!-- Temperature Trend -->
+
+    <div class="chart-card">
+
+        <h2>
+
+            Temperature Trend
+
+        </h2>
+
+        <div class="chart-container">
+
+    <canvas id="temperatureChart"></canvas>
+
+</div>
+    </div>
+
+    <!-- Recent Searches -->
+
+    <div class="history-card">
+
+        <h2>
+
+            Recent Searches
+
+        </h2>
+
+        <ul id="historyList">
+
+            <li>Chennai</li>
+
+            <li>Mumbai</li>
+
+            <li>Delhi</li>
+
+            <li>Bangalore</li>
+
+            <li>Hyderabad</li>
+
+        </ul>
+
+    </div>
+
+</section>
+</main>    
 
 </div>
 
