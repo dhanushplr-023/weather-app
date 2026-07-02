@@ -125,9 +125,23 @@ const searchButton = document.getElementById("searchBtn");
 
 const cityInput = document.getElementById("cityInput");
 
+// Search when Enter key is pressed
+cityInput.addEventListener("keypress", (event) => {
+
+    if (event.key === "Enter") {
+
+        searchButton.click();
+
+    }
+
+});
+
 searchButton.addEventListener("click", async () => {
 
     const city = cityInput.value.trim();
+
+    searchButton.textContent = "Loading...";
+    searchButton.disabled = true;
 
     if (city === "") {
 
@@ -141,11 +155,12 @@ const weather = await getWeather(city);
 
 if(weather){
 
-    console.log(weather);
-
     updateWeatherUI(weather);
 
 }
+
+searchButton.textContent = "🔍";
+searchButton.disabled = false;
 
 });
 

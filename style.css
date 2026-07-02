@@ -332,18 +332,6 @@ body{
 
 }
 
-#tempChart{
-
-    width:100%;
-
-    height:180px;
-
-    background:#252542;
-
-    border-radius:15px;
-
-}
-
 .temp-info{
 
     display:flex;

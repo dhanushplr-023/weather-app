@@ -41,6 +41,44 @@ function updateWeatherUI(data) {
 
     document.getElementById("weatherIcon").src =
         "https:" + data.current.condition.icon;
+
+   // ------------------------------
+   // Update Weather Detail Cards
+   // ------------------------------
+
+   // Wind Speed
+    document.getElementById("windSpeed").textContent =
+        `${data.current.wind_kph} km/h`;
+
+    // Current Precipitation
+    document.getElementById("rainChance").textContent =
+        `${data.current.precip_mm} mm`;
+
+    // UV Index
+    document.getElementById("uvIndex").textContent =
+        data.current.uv;
+
+    // Cloud Cover
+    document.getElementById("cloudCover").textContent =
+        `${data.current.cloud}%`;
+
+        // Wind Speed Card
+    document.getElementById("windSpeed").textContent =
+        `${data.current.wind_kph} km/h`;
+
+    // Rain Chance
+    document.getElementById("rainChance").textContent =
+        `${data.current.precip_mm} mm`;
+
+    // UV Index
+    document.getElementById("uvIndex").textContent =
+        data.current.uv;
+
+    // Cloud Cover
+    document.getElementById("cloudCover").textContent =
+        `${data.current.cloud}%`;
+
+    updateForecast(data);
 }
 
 function updateDateTime(){
@@ -58,3 +96,39 @@ function updateDateTime(){
 updateDateTime();
 
 setInterval(updateDateTime,1000);
+
+function updateForecast(data){
+
+    const container = document.getElementById("forecastContainer");
+
+    container.innerHTML = "";
+
+    data.forecast.forecastday.forEach(day=>{
+
+        const date = new Date(day.date);
+
+        const weekDay = date.toLocaleDateString("en-US",{
+
+            weekday:"short"
+
+        });
+
+        container.innerHTML += `
+
+        <div class="forecast-card">
+
+            <h3>${weekDay}</h3>
+
+            <img src="https:${day.day.condition.icon}">
+
+            <h2>${Math.round(day.day.avgtemp_c)}°C</h2>
+
+            <p>${day.day.condition.text}</p>
+
+        </div>
+
+        `;
+
+    });
+
+}

@@ -15,33 +15,7 @@ const BASE_URL = "https://api.weatherapi.com/v1";
 // Fetch Current Weather
 // ==============================
 
-async function getWeather(city) {
 
-    try {
-
-        const response = await fetch(
-            `${BASE_URL}/current.json?key=${API_KEY}&q=${city}&aqi=yes`
-        );
-
-        if (!response.ok) {
-
-            throw new Error("City not found");
-
-        }
-
-        const data = await response.json();
-
-        return data;
-
-    } catch (error) {
-
-        alert(error.message);
-
-        return null;
-
-    }
-
-}
 
 // =========================
 // Fetch Weather by Coordinates
@@ -49,24 +23,30 @@ async function getWeather(city) {
 
 async function getWeatherByCoords(lat, lon){
 
-    try{
+try{
 
-        const response = await fetch(
+    const response = await fetch(
 
-            `${BASE_URL}/current.json?key=${API_KEY}&q=${lat},${lon}&aqi=yes`
+        `${BASE_URL}/forecast.json?key=${API_KEY}&q=${lat},${lon}&days=5&aqi=yes&alerts=no`
 
-        );
+    );
 
-        const data = await response.json();
+    if(!response.ok){
 
-        return data;
-
-    }
-
-    catch(error){
-
-        console.log(error);
+        throw new Error("Location not found");
 
     }
 
+    return await response.json();
+
+}
+
+catch(error){
+
+    console.log(error);
+
+    return null;
+
+}
+    
 }
