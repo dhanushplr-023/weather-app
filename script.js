@@ -2,7 +2,7 @@
 // ==========================
 // Temperature Chart
 // ==========================
-
+console.log("SCRIPT.JS IS RUNNING");
 const chartCanvas = document.getElementById("temperatureChart");
 
 if (chartCanvas) {
@@ -182,6 +182,64 @@ locationBtn.addEventListener("click", () => {
         ()=>{
 
             alert("Location permission denied.");
+
+        }
+
+    );
+
+});
+
+// =====================================
+// Automatically Load User Location
+// =====================================
+window.addEventListener("load", () => {
+
+    console.log("Website Loaded");
+
+    if (!navigator.geolocation) {
+
+        console.log("Geolocation Not Supported");
+
+        return;
+
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+        async (position) => {
+
+            console.log("Location Permission Granted");
+
+            console.log(position.coords.latitude);
+            console.log(position.coords.longitude);
+
+           const weather = await getWeatherByCoords(
+    position.coords.latitude,
+    position.coords.longitude
+);
+
+        console.log("Weather Object:", weather);
+
+        if (weather && weather.error) {
+
+            console.error("Weather API Error:", weather.error);
+
+        }
+
+        if (weather && weather.location) {
+
+            console.log("City:", weather.location.name);
+            console.log("Temperature:", weather.current.temp_c);
+
+            updateWeatherUI(weather);
+
+        }
+
+        },
+
+        (error) => {
+
+            console.log("Location Error:", error);
 
         }
 

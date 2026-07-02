@@ -3,7 +3,26 @@
 // Update Weather Card
 // ===============================
 
-function updateWeatherUI(data){
+function updateWeatherUI(data) {
+
+    console.log("Updating UI...");
+
+    const ids = [
+        "temperature",
+        "cityName",
+        "feelsLike",
+        "humidity",
+        "wind",
+        "weatherIcon",
+        "currentDate",
+        "currentTime"
+    ];
+
+    ids.forEach(id => {
+        if (!document.getElementById(id)) {
+            console.error(`Missing HTML element with id="${id}"`);
+        }
+    });
 
     document.getElementById("temperature").textContent =
         `${Math.round(data.current.temp_c)}°C`;
@@ -22,7 +41,6 @@ function updateWeatherUI(data){
 
     document.getElementById("weatherIcon").src =
         "https:" + data.current.condition.icon;
-
 }
 
 function updateDateTime(){
