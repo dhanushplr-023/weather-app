@@ -79,6 +79,8 @@ function updateWeatherUI(data) {
         `${data.current.cloud}%`;
 
     updateForecast(data);
+    
+    updateTemperatureChart(data);
 }
 
 function updateDateTime(){
@@ -128,6 +130,73 @@ function updateForecast(data){
         </div>
 
         `;
+
+    });
+
+}
+
+function updateTemperatureChart(data) {
+
+    const hours = data.forecast.forecastday[0].hour;
+
+    const labels = [];
+    const temperatures = [];
+
+    for (let i = 0; i < 24; i += 3) {
+
+        labels.push(hours[i].time.split(" ")[1]);
+
+        temperatures.push(hours[i].temp_c);
+
+    }
+
+    const ctx = document
+        .getElementById("temperatureChart")
+        .getContext("2d");
+
+    if (temperatureChart) {
+
+        temperatureChart.destroy();
+
+    }
+
+    temperatureChart = new Chart(ctx, {
+
+        type: "line",
+
+        data: {
+
+            labels,
+
+            datasets: [
+
+                {
+
+                    label: "Temperature (°C)",
+
+                    data: temperatures,
+
+                    borderColor: "#6d5dfc",
+
+                    backgroundColor: "rgba(109,93,252,.2)",
+
+                    fill: true,
+
+                    tension: .4
+
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false
+
+        }
 
     });
 
